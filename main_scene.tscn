@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8eiktv3vpa6i"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_ikte6"]
+[ext_resource type="PackedScene" uid="uid://cilqiot0wuhi1" path="res://block.tscn" id="2_26n4h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgckh"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkmpb"]
+size = Vector2(4, 4)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gvo8u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81xhw"]
+size = Vector2(1088, 40.5)
+
+[node name="MainScene" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(480, 402)
+floor_snap_length = 0.0
+script = ExtResource("1_ikte6")
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_jgckh")
+
+[node name="charater" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/charater"]
+position = Vector2(20, -2)
+shape = SubResource("RectangleShape2D_kkmpb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(36, 604)
+physics_material_override = SubResource("PhysicsMaterial_gvo8u")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_right = 1088.0
+offset_bottom = 40.0
+color = Color(0.145098, 1, 0.0431373, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(544, 20.25)
+shape = SubResource("RectangleShape2D_81xhw")
+
+[node name="Block" parent="." instance=ExtResource("2_26n4h")]
+position = Vector2(600, 480)
+
+[node name="Block2" parent="." instance=ExtResource("2_26n4h")]
+position = Vector2(640, 480)
+
+[node name="Block3" parent="." instance=ExtResource("2_26n4h")]
+position = Vector2(680, 480)
