@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8eiktv3vpa6i"]
+
+[ext_resource type="PackedScene" uid="uid://cilqiot0wuhi1" path="res://objects/blocks/block.tscn" id="2_26n4h"]
+[ext_resource type="PackedScene" uid="uid://dp8cf0y2par1b" path="res://objects/character/player.tscn" id="2_r7ljn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gvo8u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81xhw"]
+size = Vector2(1088, 40.5)
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_r7ljn")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(36, 604)
+physics_material_override = SubResource("PhysicsMaterial_gvo8u")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_right = 1088.0
+offset_bottom = 40.0
+color = Color(0.145098, 1, 0.0431373, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(544, 20.25)
+shape = SubResource("RectangleShape2D_81xhw")
+
+[node name="Block" parent="." instance=ExtResource("2_26n4h")]
+position = Vector2(600, 480)
+
+[node name="Block2" parent="." instance=ExtResource("2_26n4h")]
+position = Vector2(640, 480)
+
+[node name="Block3" parent="." instance=ExtResource("2_26n4h")]
+position = Vector2(680, 480)
