@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8eiktv3vpa6i"]
+[gd_scene load_steps=6 format=3 uid="uid://b8eiktv3vpa6i"]
 
 [ext_resource type="PackedScene" uid="uid://dp8cf0y2par1b" path="res://objects/character/player.tscn" id="1_bijtm"]
-[ext_resource type="PackedScene" uid="uid://cal7hqsuxreg1" path="res://objects/blocks/base_block.tscn" id="3_6skpg"]
+[ext_resource type="PackedScene" uid="uid://cilqiot0wuhi1" path="res://objects/blocks/block.tscn" id="2_3mwaj"]
 [ext_resource type="PackedScene" uid="uid://cqd8v3ta72hnm" path="res://objects/blocks/turn_block.tscn" id="3_wkh30"]
-[ext_resource type="PackedScene" uid="uid://fpy7u5wrf5l0" path="res://objects/blocks/sriking_block.tscn" id="4_iw21m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gvo8u"]
 
@@ -27,11 +26,14 @@ color = Color(0.145098, 1, 0.0431373, 1)
 position = Vector2(544, 20.25)
 shape = SubResource("RectangleShape2D_81xhw")
 
+[node name="Block" parent="." instance=ExtResource("2_3mwaj")]
+position = Vector2(600, 480)
+
+[node name="Block2" parent="." instance=ExtResource("2_3mwaj")]
+position = Vector2(640, 480)
+
+[node name="Block3" parent="." instance=ExtResource("2_3mwaj")]
+position = Vector2(680, 480)
+
 [node name="TurnBlock" parent="." instance=ExtResource("3_wkh30")]
 position = Vector2(813, 493)
-
-[node name="BaseBlock" parent="." instance=ExtResource("3_6skpg")]
-position = Vector2(520, 523)
-
-[node name="SrikingBlock" parent="." instance=ExtResource("4_iw21m")]
-position = Vector2(174, 511)

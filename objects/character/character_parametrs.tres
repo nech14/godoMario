@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character_parametrs" load_steps=2 format=3 uid="uid://byayvd8krnc6q"]
+
+[ext_resource type="Script" path="res://objects/character/character_parameters.gd" id="1_7lwks"]
+
+[resource]
+script = ExtResource("1_7lwks")
+max_run_speed = 135.0
+max_sprint_speed = 180.0
+walk_accel = 337.5
+run_accel = 337.5
+stop_decel = 225.0
+p_meter_starting_dpeed = 131.25
+max_p_meter = 1.867
+walk_decel = 562.5
+run_decel = 1125.0
+walk_accel_slippery = 112.5
+run_accel_slippery = 337.5
+stop_decel_slippery = 18.125
+spin_jump_speed_iner = 8.67188
+gravity_with_jump_held = 675.0
+gravity_without_jump_held = 1350.0
+base_jump_speed = 300.0
+jump_speed_incr = 9.375
+base_spin_jump_speed = 277.5
