@@ -6,6 +6,7 @@ var last_position: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	bounce_timer = $BounceTimer
+	bounce_timer.wait_time = wait_time
 	last_position = position.y
 
 

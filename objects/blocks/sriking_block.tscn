@@ -5,6 +5,8 @@
 
 [node name="SrikingBlock" instance=ExtResource("1_f14c5")]
 script = ExtResource("2_q0jl8")
+initial_bounce_y_speed = -300.0
+wait_time = 0.2
 
 [node name="ColorRect" parent="." index="1"]
 color = Color(1, 1, 0.0588235, 1)

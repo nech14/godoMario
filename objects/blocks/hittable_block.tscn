@@ -8,6 +8,7 @@ size = Vector2(40, 40)
 
 [node name="HittableBlock" instance=ExtResource("1_uj2rw")]
 script = ExtResource("2_ewj8q")
+wait_time = 0.1
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
 position = Vector2(20, 20)
@@ -16,6 +17,7 @@ position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_4itqg")
 
 [node name="BounceTimer" type="Timer" parent="." index="3"]
+wait_time = 0.2
 one_shot = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

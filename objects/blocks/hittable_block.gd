@@ -6,12 +6,17 @@ class_name HittableBlock
 @export var initial_bounce_y_speed: float = -500.0
 
 var y_speed: float = 0.0
+
 var bounce_timer: Timer
+@export
+var wait_time = 0.2
 var touch = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	bounce_timer = $BounceTimer
+	bounce_timer.wait_time = wait_time
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
