@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddnptk0lcsf1i"]
+
+[ext_resource type="PackedScene" uid="uid://biih50hntfarg" path="res://objects/bonuses/item.tscn" id="1_issrb"]
+[ext_resource type="Script" path="res://objects/bonuses/coin.gd" id="2_5ru0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epvng"]
+size = Vector2(20, 30)
+
+[node name="Coin" instance=ExtResource("1_issrb")]
+script = ExtResource("2_5ru0j")
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+offset_right = 30.0
+offset_bottom = 30.0
+color = Color(1, 0.741176, 0.0156863, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="." index="1"]
+offset_left = 5.0
+offset_top = -5.0
+offset_right = 25.0
+offset_bottom = 35.0
+color = Color(1, 0.741176, 0.0156863, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="." index="2"]
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 20.0
+offset_bottom = 24.0
+color = Color(0.982272, 0.937221, 0.529255, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(15, 15)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-5, -5)
+shape = SubResource("RectangleShape2D_epvng")

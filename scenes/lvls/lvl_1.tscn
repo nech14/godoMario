@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8eiktv3vpa6i"]
+[gd_scene load_steps=9 format=3 uid="uid://b8eiktv3vpa6i"]
 
 [ext_resource type="PackedScene" uid="uid://dp8cf0y2par1b" path="res://objects/character/player.tscn" id="1_bijtm"]
 [ext_resource type="PackedScene" uid="uid://cal7hqsuxreg1" path="res://objects/blocks/base_block.tscn" id="3_6skpg"]
 [ext_resource type="PackedScene" uid="uid://cqd8v3ta72hnm" path="res://objects/blocks/turn_block.tscn" id="3_wkh30"]
 [ext_resource type="PackedScene" uid="uid://fpy7u5wrf5l0" path="res://objects/blocks/sriking_block.tscn" id="4_iw21m"]
+[ext_resource type="PackedScene" uid="uid://c0cskdad4ovad" path="res://objects/character_interface/character_interface.tscn" id="5_4wcsv"]
+[ext_resource type="PackedScene" uid="uid://ddnptk0lcsf1i" path="res://objects/bonuses/coin.tscn" id="6_spjtp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gvo8u"]
 
@@ -38,3 +40,11 @@ position = Vector2(174, 511)
 
 [node name="BaseBlock2" parent="." instance=ExtResource("3_6skpg")]
 position = Vector2(377, 547)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("5_4wcsv")]
+
+[node name="Coin" parent="." instance=ExtResource("6_spjtp")]
+position = Vector2(656, 546)
+
+[node name="Coin2" parent="." instance=ExtResource("6_spjtp")]
+position = Vector2(526, 460)
