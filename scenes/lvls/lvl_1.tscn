@@ -31,6 +31,7 @@ shape = SubResource("RectangleShape2D_81xhw")
 
 [node name="TurnBlock" parent="." instance=ExtResource("3_wkh30")]
 position = Vector2(813, 493)
+wait_time = 0.2
 
 [node name="BaseBlock" parent="." instance=ExtResource("3_6skpg")]
 position = Vector2(520, 523)

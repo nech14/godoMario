@@ -12,7 +12,7 @@ class_name Character_parametrs
 
 @export var stop_decel: float = 225.0
 
-@export var p_meter_starting_dpeed = 131.25
+@export var p_meter_starting_speed = 131.25
 
 @export var max_p_meter = 1.867
 
