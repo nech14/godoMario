@@ -8,6 +8,7 @@ size = Vector2(20, 30)
 
 [node name="Coin" instance=ExtResource("1_issrb")]
 script = ExtResource("2_5ru0j")
+count_coins = 5
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 offset_right = 30.0

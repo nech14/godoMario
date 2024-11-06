@@ -1,5 +1,7 @@
 extends Item
 
+@export
+var count_coins = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,7 +13,7 @@ func _process(delta: float) -> void:
 	
 func _below() -> void:
 	queue_free()
-	GameState.give_coins(1)
+	GameState.give_coins(count_coins)
 	
 func _above() -> void:
 	queue_free()
