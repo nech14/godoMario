@@ -24,10 +24,7 @@ position = Vector2(20, 20)
 position = Vector2(0, -20.5)
 shape = SubResource("RectangleShape2D_0byf2")
 
-[node name="PhysicalBody" type="Node2D" parent="."]
-
 [node name="Interaction_points" type="Area2D" parent="."]
-visible = false
 
 [node name="Head" type="CollisionShape2D" parent="Interaction_points"]
 position = Vector2(20, 2)
