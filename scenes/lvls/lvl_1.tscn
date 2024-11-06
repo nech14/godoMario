@@ -35,3 +35,6 @@ position = Vector2(520, 523)
 
 [node name="SrikingBlock" parent="." instance=ExtResource("4_iw21m")]
 position = Vector2(174, 511)
+
+[node name="BaseBlock2" parent="." instance=ExtResource("3_6skpg")]
+position = Vector2(377, 547)

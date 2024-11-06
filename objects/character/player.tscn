@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp8cf0y2par1b"]
+[gd_scene load_steps=5 format=3 uid="uid://dp8cf0y2par1b"]
 
 [ext_resource type="Script" path="res://objects/character/player.gd" id="1_87m65"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfgru"]
-size = Vector2(40, 40)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0byf2"]
 size = Vector2(9, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2xx0"]
+size = Vector2(16, 15)
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_ell64"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_87m65")
@@ -15,13 +17,77 @@ script = ExtResource("1_87m65")
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_vfgru")
-
 [node name="charater" type="Area2D" parent="."]
 position = Vector2(20, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="charater"]
 position = Vector2(0, -20.5)
 shape = SubResource("RectangleShape2D_0byf2")
+
+[node name="PhysicalBody" type="Node2D" parent="."]
+
+[node name="Interaction_points" type="Area2D" parent="."]
+visible = false
+
+[node name="Head" type="CollisionShape2D" parent="Interaction_points"]
+position = Vector2(20, 2)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="HeadLeft" type="CollisionShape2D" parent="Interaction_points"]
+position = Vector2(2, 8)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="HeadRight" type="CollisionShape2D" parent="Interaction_points"]
+position = Vector2(38, 8)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="Body" type="CollisionShape2D" parent="Interaction_points"]
+position = Vector2(20, 20)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="BodyLeft" type="CollisionShape2D" parent="Interaction_points"]
+position = Vector2(2, 32)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="BodyRight" type="CollisionShape2D" parent="Interaction_points"]
+position = Vector2(38, 32)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="FootLeft" type="CollisionShape2D" parent="Interaction_points"]
+position = Vector2(11, 38)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="FootRight" type="CollisionShape2D" parent="Interaction_points"]
+position = Vector2(30, 38)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="Bottom" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+scale = Vector2(4, 1)
+shape = SubResource("SeparationRayShape2D_ell64")
+
+[node name="Head" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+rotation = 3.14159
+scale = Vector2(4, 1)
+shape = SubResource("SeparationRayShape2D_ell64")
+
+[node name="Left" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+rotation = 1.5708
+scale = Vector2(4, 1)
+shape = SubResource("SeparationRayShape2D_ell64")
+
+[node name="Right" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+rotation = -1.5708
+scale = Vector2(4, 1)
+shape = SubResource("SeparationRayShape2D_ell64")
