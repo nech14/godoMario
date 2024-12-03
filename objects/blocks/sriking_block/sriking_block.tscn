@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://fpy7u5wrf5l0"]
 
-[ext_resource type="PackedScene" uid="uid://cltpplvspfo8e" path="res://objects/blocks/hittable_block.tscn" id="1_f14c5"]
-[ext_resource type="Script" path="res://objects/blocks/sriking_block.gd" id="2_q0jl8"]
+[ext_resource type="PackedScene" uid="uid://cltpplvspfo8e" path="res://objects/blocks/hittable_block/hittable_block.tscn" id="1_f14c5"]
+[ext_resource type="Script" path="res://objects/blocks/sriking_block/sriking_block.gd" id="2_q0jl8"]
 
 [node name="SrikingBlock" instance=ExtResource("1_f14c5")]
 script = ExtResource("2_q0jl8")

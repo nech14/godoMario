@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddnptk0lcsf1i"]
 
-[ext_resource type="PackedScene" uid="uid://biih50hntfarg" path="res://objects/bonuses/item.tscn" id="1_issrb"]
-[ext_resource type="Script" path="res://objects/bonuses/coin.gd" id="2_5ru0j"]
+[ext_resource type="PackedScene" uid="uid://biih50hntfarg" path="res://objects/bonuses/item/item.tscn" id="1_issrb"]
+[ext_resource type="Script" path="res://objects/bonuses/coin/coin.gd" id="2_5ru0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epvng"]
 size = Vector2(20, 30)

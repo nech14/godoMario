@@ -5,10 +5,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0byf2"]
 size = Vector2(9, 1)
 
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_ell64"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2xx0"]
 size = Vector2(16, 15)
-
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_ell64"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_87m65")
@@ -25,67 +25,65 @@ position = Vector2(20, 20)
 position = Vector2(0, -20.5)
 shape = SubResource("RectangleShape2D_0byf2")
 
-[node name="Interaction_points" type="Area2D" parent="."]
-
-[node name="Head" type="CollisionShape2D" parent="Interaction_points"]
-position = Vector2(20, 2)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="HeadLeft" type="CollisionShape2D" parent="Interaction_points"]
-position = Vector2(2, 8)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="HeadRight" type="CollisionShape2D" parent="Interaction_points"]
-position = Vector2(38, 8)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="Body" type="CollisionShape2D" parent="Interaction_points"]
-position = Vector2(20, 20)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="BodyLeft" type="CollisionShape2D" parent="Interaction_points"]
-position = Vector2(2, 32)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="BodyRight" type="CollisionShape2D" parent="Interaction_points"]
-position = Vector2(38, 32)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="FootLeft" type="CollisionShape2D" parent="Interaction_points"]
-position = Vector2(11, 38)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="FootRight" type="CollisionShape2D" parent="Interaction_points"]
-position = Vector2(30, 38)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
 [node name="Bottom" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
-scale = Vector2(4, 1)
+scale = Vector2(5, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
 
 [node name="Head" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
 rotation = 3.14159
-scale = Vector2(4, 1)
+scale = Vector2(7, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
 
 [node name="Left" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
 rotation = 1.5708
-scale = Vector2(4, 1)
+scale = Vector2(5, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
 
 [node name="Right" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
 rotation = -1.5708
-scale = Vector2(4, 1)
+scale = Vector2(5, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
+
+[node name="Head2" type="CollisionShape2D" parent="."]
+position = Vector2(20, 2)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="HeadLeft" type="CollisionShape2D" parent="."]
+position = Vector2(8, 13)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="HeadRight" type="CollisionShape2D" parent="."]
+position = Vector2(32, 13)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="BodyLeft" type="CollisionShape2D" parent="."]
+position = Vector2(7, 30)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="BodyRight" type="CollisionShape2D" parent="."]
+position = Vector2(33, 30)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="FootLeft" type="CollisionShape2D" parent="."]
+position = Vector2(10, 33)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="FootRight" type="CollisionShape2D" parent="."]
+position = Vector2(30, 33)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://biih50hntfarg"]
 
-[ext_resource type="Script" path="res://objects/bonuses/item.gd" id="1_hpvo7"]
+[ext_resource type="Script" path="res://objects/bonuses/item/item.gd" id="1_hpvo7"]
 
 [node name="StaticBody2D" type="StaticBody2D"]
 position = Vector2(0, 5)

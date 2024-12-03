@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqd8v3ta72hnm"]
+
+[ext_resource type="PackedScene" uid="uid://cltpplvspfo8e" path="res://objects/blocks/hittable_block/hittable_block.tscn" id="1_mihyb"]
+[ext_resource type="Script" path="res://objects/blocks/turn_block/turn_block.gd" id="2_tis27"]
+
+[node name="TurnBlock" instance=ExtResource("1_mihyb")]
+script = ExtResource("2_tis27")
+
+[node name="BounceTimer" parent="." index="3"]
+wait_time = 1.0

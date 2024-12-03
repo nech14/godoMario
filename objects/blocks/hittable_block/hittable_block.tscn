@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cltpplvspfo8e"]
 
 [ext_resource type="PackedScene" uid="uid://cal7hqsuxreg1" path="res://objects/blocks/base_block.tscn" id="1_uj2rw"]
-[ext_resource type="Script" path="res://objects/blocks/hittable_block.gd" id="2_ewj8q"]
+[ext_resource type="Script" path="res://objects/blocks/hittable_block/hittable_block.gd" id="2_ewj8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4itqg"]
 size = Vector2(40, 40)

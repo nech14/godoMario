@@ -14,8 +14,7 @@ var touch = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	bounce_timer = $BounceTimer
-	bounce_timer.wait_time = wait_time
+	_hittable_ready()
 
 
 
@@ -34,3 +33,7 @@ func _bounce() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	pass
 	
+
+func _hittable_ready() -> void:
+	bounce_timer = $BounceTimer
+	bounce_timer.wait_time = wait_time
