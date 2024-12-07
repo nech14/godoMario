@@ -11,6 +11,8 @@ var spin_jumping = true
 var p_meter: float = 0.0  # Текущий уровень P-метра
 var is_running = false    # Переменная для состояния бега
 
+@export var matHealth = 1
+@onready var currentHealth = 1
 
 func _physics_process(delta: float) -> void:
 
@@ -73,3 +75,12 @@ func stop_movement():
 
 func resume_movement():
 	can_move = true
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.name == "hitBox":
+		currentHealth -= 1
+		if currentHealth <= 0:
+			get_tree().change_scene_to_file("res://scenes/status_screens/dead_scean.tscn")
+		
+	pass # Replace with function body.

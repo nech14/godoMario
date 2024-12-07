@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp8cf0y2par1b"]
+[gd_scene load_steps=6 format=3 uid="uid://dp8cf0y2par1b"]
 
 [ext_resource type="Script" path="res://objects/character/player.gd" id="1_87m65"]
 
@@ -9,6 +9,9 @@ size = Vector2(9, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2xx0"]
 size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lw1ua"]
+size = Vector2(40, 40)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_87m65")
@@ -87,3 +90,13 @@ shape = SubResource("RectangleShape2D_v2xx0")
 position = Vector2(30, 33)
 scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="hitBox" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_lw1ua")
+debug_color = Color(0.962126, 0.097831, 0.42837, 0.42)
+
+[connection signal="area_entered" from="hitBox" to="." method="_on_hit_box_area_entered"]
