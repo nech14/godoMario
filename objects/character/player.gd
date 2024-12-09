@@ -14,20 +14,50 @@ var is_running = false    # Переменная для состояния бе�
 @export var matHealth = 1
 @onready var currentHealth = 1
 
+var sprite_small: ColorRect
+var sprite_big: ColorRect
+var sprite_sitting: ColorRect
+var sprite: ColorRect
+
+var ducking: bool = false:
+	set(value):
+		var old_value: bool = ducking
+		ducking = value
+		if old_value != value:
+			_updat_poweru_state_settings()
+
+enum PowerupState{
+	SMALL,
+	BIG,
+	CAPE,
+	FIRE
+}
+
+var powerup_state: PowerupState = PowerupState.BIG:
+	set(value):
+		powerup_state = value
+		_updat_poweru_state_settings()
+
 func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta 
 		
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and !ducking:
 		velocity.y = _jump_speed()
+		
+	if Input.is_action_pressed("ui_down") and is_on_floor():  # Проверяем, нажата ли клавиша "вниз"
+		ducking = true
+		
+	elif ducking:
+		ducking = false
 		
 	if can_move:
 		var direction := Input.get_axis("ui_left", "ui_right")
 		
 		if direction != 0:
-			if Input.is_action_pressed("ui_sprint"):
+			if Input.is_action_pressed("ui_sprint") and !ducking:
 				# Увеличиваем P-метр по мере удержания кнопки бега
 				p_meter = min(p_meter + delta, character_parametrs.max_p_meter)
 				is_running = p_meter >= character_parametrs.max_p_meter
@@ -54,10 +84,19 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	
+	
 func _ready() -> void:
 	character_parametrs = load("res://objects/character/character_parametrs.tres") as Character_parametrs
 	
 	add_to_group("player")
+	
+	sprite_small = $ColorRect
+	sprite_big = $BigCharacter
+	sprite_sitting = $BigCharacterSitting
+	
+	_updat_poweru_state_settings()
+	
+	
 
 
 func _jump_speed():
@@ -84,3 +123,37 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			get_tree().change_scene_to_file("res://scenes/status_screens/dead_scean.tscn")
 		
 	pass # Replace with function body.
+	
+	
+
+func _small():
+	return powerup_state == PowerupState.SMALL
+
+	
+func _updat_poweru_state_settings() -> void:
+	
+	var should_use_small_sprite: bool = _small()
+	sprite_small.set_deferred("visible", should_use_small_sprite)
+	sprite_big.set_deferred("visible", !should_use_small_sprite)
+	sprite_sitting.set_deferred("visible", false)
+	sprite = sprite_small if _small() else sprite_big
+	
+	if ducking:
+		sprite.set_deferred("visible", false)
+		sprite = sprite_sitting
+		sprite.set_deferred("visible", true)
+	
+	
+	var should_use_small_hitbox: bool = _small() or ducking
+	var small_collision_shapes: Array = get_tree().get_nodes_in_group("player_hitbox_small")
+	var big_collision_shape: Array = get_tree().get_nodes_in_group("player_hitbox_big")
+	var collision_shapes: Array = small_collision_shapes + big_collision_shape
+	for shape in collision_shapes:
+		var should_activate: bool = (
+			(should_use_small_hitbox and shape.is_in_group("player_hitbox_small")
+			or (not should_use_small_hitbox and shape.is_in_group("player_hitbox_big")))
+			)
+		shape.set_deferred("disabled", !should_activate)
+		
+	
+	

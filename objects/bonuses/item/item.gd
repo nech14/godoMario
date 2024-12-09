@@ -18,5 +18,5 @@ func _below():
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.name == "charater":
+	if area.name == "hitBox":
 		_below()

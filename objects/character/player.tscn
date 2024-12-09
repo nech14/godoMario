@@ -6,17 +6,18 @@
 size = Vector2(9, 1)
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_ell64"]
+length = 20.0803
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lw1ua"]
+size = Vector2(40, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2xx0"]
 size = Vector2(16, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lw1ua"]
-size = Vector2(40, 40)
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_87m65")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." groups=["player_hitbox_small"]]
 offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
@@ -24,79 +25,173 @@ metadata/_edit_use_anchors_ = true
 [node name="charater" type="Area2D" parent="."]
 position = Vector2(20, 20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="charater"]
+[node name="small" type="CollisionShape2D" parent="charater" groups=["player_hitbox_small"]]
 position = Vector2(0, -20.5)
 shape = SubResource("RectangleShape2D_0byf2")
 
-[node name="Bottom" type="CollisionShape2D" parent="."]
+[node name="big" type="CollisionShape2D" parent="charater" groups=["player_hitbox_big"]]
+position = Vector2(0, -40.5)
+shape = SubResource("RectangleShape2D_0byf2")
+
+[node name="BottomSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(20, 20)
 scale = Vector2(5, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
 
-[node name="Head" type="CollisionShape2D" parent="."]
+[node name="HeadSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(20, 20)
 rotation = 3.14159
 scale = Vector2(7, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
 
-[node name="Left" type="CollisionShape2D" parent="."]
+[node name="LeftSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(20, 20)
 rotation = 1.5708
 scale = Vector2(5, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
 
-[node name="Right" type="CollisionShape2D" parent="."]
+[node name="RightSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(20, 20)
 rotation = -1.5708
 scale = Vector2(5, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
 
-[node name="Head2" type="CollisionShape2D" parent="."]
+[node name="hitBox" type="Area2D" parent="."]
+visible = false
+
+[node name="small" type="CollisionShape2D" parent="hitBox" groups=["player_hitbox_small"]]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_lw1ua")
+debug_color = Color(0.962126, 0.097831, 0.42837, 0.42)
+
+[node name="big" type="CollisionShape2D" parent="hitBox" groups=["player_hitbox_big"]]
+position = Vector2(20, 10)
+shape = SubResource("RectangleShape2D_lw1ua")
+debug_color = Color(0.962126, 0.097831, 0.42837, 0.42)
+
+[node name="BodySmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
+position = Vector2(20, 20)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="Head2Small" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(20, 2)
 scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_v2xx0")
 
-[node name="HeadLeft" type="CollisionShape2D" parent="."]
-position = Vector2(8, 13)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="HeadRight" type="CollisionShape2D" parent="."]
-position = Vector2(32, 13)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
-scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_v2xx0")
-
-[node name="BodyLeft" type="CollisionShape2D" parent="."]
+[node name="BodyLeftSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(7, 30)
 scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_v2xx0")
 
-[node name="BodyRight" type="CollisionShape2D" parent="."]
+[node name="BodyRightSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(33, 30)
 scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_v2xx0")
 
-[node name="FootLeft" type="CollisionShape2D" parent="."]
+[node name="FootLeftSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(10, 33)
 scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_v2xx0")
 
-[node name="FootRight" type="CollisionShape2D" parent="."]
+[node name="FootRightSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(30, 33)
 scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_v2xx0")
 
-[node name="hitBox" type="Area2D" parent="."]
-visible = false
+[node name="HeadLeftSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
+position = Vector2(8, 13)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+[node name="HeadRightSmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
+position = Vector2(32, 13)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="BigCharacter" type="ColorRect" parent="." groups=["player_hitbox_big"]]
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BigCharacterSitting" type="ColorRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BottomBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
 position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_lw1ua")
-debug_color = Color(0.962126, 0.097831, 0.42837, 0.42)
+scale = Vector2(5, 1)
+shape = SubResource("SeparationRayShape2D_ell64")
+
+[node name="HeadBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(20, 5)
+rotation = 3.14159
+scale = Vector2(7, 1.245)
+shape = SubResource("SeparationRayShape2D_ell64")
+
+[node name="LeftBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(20, 10)
+rotation = 1.5708
+scale = Vector2(10, 1)
+shape = SubResource("SeparationRayShape2D_ell64")
+
+[node name="RightBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(20, 10)
+rotation = -1.5708
+scale = Vector2(10, 1)
+shape = SubResource("SeparationRayShape2D_ell64")
+
+[node name="BodyBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(20, 10)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="Head2Big" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(20, -18)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="BodyLeftBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(7, 30)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="BodyRightBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(33, 30)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="FootLeftBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(10, 33)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="FootRightBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(30, 33)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="HeadLeftBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(8, -5)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
+
+[node name="HeadRightBig" type="CollisionShape2D" parent="." groups=["player_hitbox_big"]]
+visible = false
+position = Vector2(32, -5)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_v2xx0")
 
 [connection signal="area_entered" from="hitBox" to="." method="_on_hit_box_area_entered"]
