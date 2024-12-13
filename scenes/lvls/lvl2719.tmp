@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=3 uid="uid://b8eiktv3vpa6i"]
+
+[ext_resource type="PackedScene" uid="uid://dp8cf0y2par1b" path="res://objects/character/player.tscn" id="1_bijtm"]
+[ext_resource type="PackedScene" uid="uid://dm2aslc332d3t" path="res://objects/enemy/base_enemy.tscn" id="2_poo37"]
+[ext_resource type="PackedScene" uid="uid://cal7hqsuxreg1" path="res://objects/blocks/base_block.tscn" id="3_6skpg"]
+[ext_resource type="PackedScene" uid="uid://cqd8v3ta72hnm" path="res://objects/blocks/turn_block/turn_block.tscn" id="3_wkh30"]
+[ext_resource type="PackedScene" uid="uid://fpy7u5wrf5l0" path="res://objects/blocks/sriking_block/sriking_block.tscn" id="4_iw21m"]
+[ext_resource type="PackedScene" uid="uid://c0cskdad4ovad" path="res://objects/character_interface/character_interface.tscn" id="5_4wcsv"]
+[ext_resource type="PackedScene" uid="uid://ddnptk0lcsf1i" path="res://objects/bonuses/coin/coin.tscn" id="6_spjtp"]
+[ext_resource type="PackedScene" uid="uid://cb003qo87p328" path="res://objects/blocks/question_block/question_block.tscn" id="7_t6byh"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="8_w3jef"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_3ytsp"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="10_55g5p"]
+[ext_resource type="PackedScene" uid="uid://c8tluu1g5et8p" path="res://objects/bonuses/elixirOfGigants/elixirOfGigants.tscn" id="12_3jrtw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gvo8u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81xhw"]
+size = Vector2(1510, 40.5)
+
+[sub_resource type="Resource" id="Resource_io7d0"]
+script = ExtResource("9_3ytsp")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_bijtm")]
+position = Vector2(36, 284)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(36, 604)
+physics_material_override = SubResource("PhysicsMaterial_gvo8u")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -50.0
+offset_right = 1457.0
+offset_bottom = 40.0
+color = Color(0.145098, 1, 0.0431373, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(705, 20.25)
+shape = SubResource("RectangleShape2D_81xhw")
+
+[node name="BaseEnemy" parent="StaticBody2D" instance=ExtResource("2_poo37")]
+position = Vector2(1284, -50)
+
+[node name="TurnBlock" parent="." instance=ExtResource("3_wkh30")]
+position = Vector2(813, 493)
+wait_time = 0.2
+
+[node name="BaseBlock" parent="." instance=ExtResource("3_6skpg")]
+position = Vector2(520, 523)
+
+[node name="SrikingBlock" parent="." instance=ExtResource("4_iw21m")]
+position = Vector2(174, 511)
+
+[node name="BaseBlock2" parent="." instance=ExtResource("3_6skpg")]
+position = Vector2(377, 547)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("5_4wcsv")]
+
+[node name="Coin" parent="." instance=ExtResource("6_spjtp")]
+position = Vector2(656, 546)
+
+[node name="Coin2" parent="." instance=ExtResource("6_spjtp")]
+position = Vector2(526, 460)
+
+[node name="QuestionBlock" parent="." instance=ExtResource("7_t6byh")]
+position = Vector2(990, 523)
+spawner_scene = ExtResource("6_spjtp")
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(36, 284)
+script = ExtResource("8_w3jef")
+follow_mode = 5
+follow_target = NodePath("../Player")
+zoom = Vector2(1.25, 1.25)
+tween_resource = SubResource("Resource_io7d0")
+follow_damping = true
+dead_zone_width = 0.047
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(36, 284)
+zoom = Vector2(1.25, 1.25)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("10_55g5p")
+
+[node name="ElixirOfGigants" parent="." instance=ExtResource("12_3jrtw")]
+position = Vector2(1184, 568)

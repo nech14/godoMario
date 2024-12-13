@@ -19,6 +19,8 @@ var sprite_big: ColorRect
 var sprite_sitting: ColorRect
 var sprite: ColorRect
 
+var blocOnTop = false
+
 var ducking: bool = false:
 	set(value):
 		var old_value: bool = ducking
@@ -33,7 +35,7 @@ enum PowerupState{
 	FIRE
 }
 
-var powerup_state: PowerupState = PowerupState.BIG:
+var powerup_state: PowerupState = PowerupState.SMALL:
 	set(value):
 		powerup_state = value
 		_updat_poweru_state_settings()
@@ -45,12 +47,12 @@ func _physics_process(delta: float) -> void:
 		
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and !ducking:
-		velocity.y = _jump_speed()
+		_on_jump()
 		
 	if Input.is_action_pressed("ui_down") and is_on_floor():  # Проверяем, нажата ли клавиша "вниз"
 		ducking = true
 		
-	elif ducking:
+	elif ducking and !blocOnTop:
 		ducking = false
 		
 	if can_move:
@@ -82,7 +84,19 @@ func _physics_process(delta: float) -> void:
 	
 	
 	move_and_slide()
+
+
+func _on_jump():
+	velocity.y = _jump_speed()
 	
+
+func _take_damage(damage=1):
+	if powerup_state != PowerupState.SMALL:
+		powerup_state = PowerupState.SMALL
+	else:
+		currentHealth -= damage
+		if currentHealth <= 0:
+			get_tree().change_scene_to_file("res://scenes/status_screens/dead_scean.tscn")
 	
 	
 func _ready() -> void:
@@ -118,9 +132,8 @@ func resume_movement():
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.name == "hitBox":
-		currentHealth -= 1
-		if currentHealth <= 0:
-			get_tree().change_scene_to_file("res://scenes/status_screens/dead_scean.tscn")
+		_take_damage()
+
 		
 	pass # Replace with function body.
 	
@@ -156,4 +169,15 @@ func _updat_poweru_state_settings() -> void:
 		shape.set_deferred("disabled", !should_activate)
 		
 	
+
+
+func _on_block_on_top_body_entered(body: Node2D) -> void:
+	if ducking and powerup_state != PowerupState.SMALL and body.is_in_group("block"):
+		ducking = true
+		blocOnTop = true
 	
+
+func _on_block_on_top_body_exited(body: Node2D) -> void:
+	if ducking and powerup_state != PowerupState.SMALL and body.is_in_group("block"):
+		blocOnTop = false
+		ducking = false

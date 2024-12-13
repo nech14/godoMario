@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5byj6ejpcym6"
-path="res://.godot/imported/main.png-f3b9a60fef4b638f4acaef35a8fe97ba.ctex"
+uid="uid://c218tyvxf7g7v"
+path="res://.godot/imported/plx-3.png-81c883912be527205392aeccf27fd31c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/tilemap/main.png"
-dest_files=["res://.godot/imported/main.png-f3b9a60fef4b638f4acaef35a8fe97ba.ctex"]
+source_file="res://scenes/background/jungle/plx-3.png"
+dest_files=["res://.godot/imported/plx-3.png-81c883912be527205392aeccf27fd31c.ctex"]
 
 [params]
 

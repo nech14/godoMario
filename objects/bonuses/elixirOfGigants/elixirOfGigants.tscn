@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8tluu1g5et8p"]
+
+[ext_resource type="PackedScene" uid="uid://biih50hntfarg" path="res://objects/bonuses/item/item.tscn" id="1_k4j4e"]
+[ext_resource type="Script" path="res://objects/bonuses/elixirOfGigants/elixir_of_gigants.gd" id="2_v8jap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvimm"]
+size = Vector2(10, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ts5c7"]
+size = Vector2(10, 15)
+
+[node name="ElixirOfGigants" instance=ExtResource("1_k4j4e")]
+position = Vector2(0, 0)
+script = ExtResource("2_v8jap")
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+offset_right = 10.0
+offset_bottom = 15.0
+color = Color(0.92979, 0.495143, 0.915971, 1)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(5, 7.5)
+shape = SubResource("RectangleShape2D_bvimm")
+disabled = true
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-15, -12.5)
+shape = SubResource("RectangleShape2D_ts5c7")

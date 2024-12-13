@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cu6dvt1e7htqv"]
+
+[ext_resource type="PackedScene" uid="uid://de4bhygft4esq" path="res://objects/enemy/base_mode_enemy/base_move_enemy.tscn" id="1_p0j6c"]
+[ext_resource type="Script" path="res://objects/enemy/snake/snake.gd" id="2_jfg2p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3rxy"]
+size = Vector2(40, 20)
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_78i4r"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_ybddw"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_j2gf4"]
+length = 10.0
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_eiswr"]
+length = 10.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7w5c"]
+size = Vector2(38, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jdjw"]
+size = Vector2(48, 20)
+
+[node name="BaseMoveEnemy" instance=ExtResource("1_p0j6c")]
+script = ExtResource("2_jfg2p")
+SPEED = 100.0
+
+[node name="ColorRect" parent="." index="0"]
+offset_bottom = 20.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HitBox" parent="." index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(20, 10)
+shape = SubResource("RectangleShape2D_a3rxy")
+
+[node name="left" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(20, 10)
+rotation = 1.5708
+scale = Vector2(3, 1)
+shape = SubResource("SeparationRayShape2D_78i4r")
+
+[node name="right" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(20, 10)
+rotation = 4.71239
+scale = Vector2(3, 1)
+shape = SubResource("SeparationRayShape2D_ybddw")
+
+[node name="bottom" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(20, 10)
+scale = Vector2(5, 1)
+shape = SubResource("SeparationRayShape2D_j2gf4")
+
+[node name="top" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(20, 10)
+rotation = 3.14159
+scale = Vector2(5, 1)
+shape = SubResource("SeparationRayShape2D_eiswr")
+
+[node name="CollisionShape2D" parent="." index="6"]
+visible = false
+position = Vector2(20, 10)
+shape = SubResource("RectangleShape2D_d7w5c")
+
+[node name="Eyes" type="Area2D" parent="." index="7"]
+
+[node name="Eyes" type="CollisionShape2D" parent="Eyes" index="0"]
+position = Vector2(20, 10)
+shape = SubResource("RectangleShape2D_7jdjw")
+
+[connection signal="area_entered" from="Eyes" to="." method="_on_eyes_area_entered"]
+[connection signal="body_entered" from="Eyes" to="." method="_on_eyes_body_entered"]

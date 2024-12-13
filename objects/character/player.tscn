@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp8cf0y2par1b"]
+[gd_scene load_steps=8 format=3 uid="uid://dp8cf0y2par1b"]
 
 [ext_resource type="Script" path="res://objects/character/player.gd" id="1_87m65"]
 
@@ -9,7 +9,13 @@ size = Vector2(9, 1)
 length = 20.0803
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lw1ua"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbugn"]
 size = Vector2(40, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltuid"]
+size = Vector2(16, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2xx0"]
 size = Vector2(16, 15)
@@ -57,7 +63,6 @@ scale = Vector2(5, 1)
 shape = SubResource("SeparationRayShape2D_ell64")
 
 [node name="hitBox" type="Area2D" parent="."]
-visible = false
 
 [node name="small" type="CollisionShape2D" parent="hitBox" groups=["player_hitbox_small"]]
 position = Vector2(20, 20)
@@ -66,8 +71,13 @@ debug_color = Color(0.962126, 0.097831, 0.42837, 0.42)
 
 [node name="big" type="CollisionShape2D" parent="hitBox" groups=["player_hitbox_big"]]
 position = Vector2(20, 10)
-shape = SubResource("RectangleShape2D_lw1ua")
-debug_color = Color(0.962126, 0.097831, 0.42837, 0.42)
+shape = SubResource("RectangleShape2D_rbugn")
+
+[node name="BlockOnTop" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockOnTop"]
+position = Vector2(20, -10)
+shape = SubResource("RectangleShape2D_ltuid")
 
 [node name="BodySmall" type="CollisionShape2D" parent="." groups=["player_hitbox_small"]]
 position = Vector2(20, 20)
@@ -110,6 +120,7 @@ scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_v2xx0")
 
 [node name="BigCharacter" type="ColorRect" parent="." groups=["player_hitbox_big"]]
+visible = false
 offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -195,3 +206,5 @@ scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_v2xx0")
 
 [connection signal="area_entered" from="hitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="BlockOnTop" to="." method="_on_block_on_top_body_entered"]
+[connection signal="body_exited" from="BlockOnTop" to="." method="_on_block_on_top_body_exited"]

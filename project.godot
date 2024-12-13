@@ -24,6 +24,11 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
+[global_group]
+
+enemy=""
+block=""
+
 [input]
 
 ui_sprint={
