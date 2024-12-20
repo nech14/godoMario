@@ -1,0 +1,135 @@
+[gd_scene load_steps=18 format=3 uid="uid://d2u2p8qu6pnrx"]
+
+[ext_resource type="Texture2D" uid="uid://coqtd2c2xw5o7" path="res://objects/blocks/falling_rock/FallingRock.png" id="2_oiarw"]
+[ext_resource type="Script" path="res://objects/blocks/falling_rock/falling_rock.gd" id="2_v45lg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6jr2"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e07xa"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rpeh"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pt3t"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uj4o"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkxno"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63y6b"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbmxc"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slpgp"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrn6y"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mv7u"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp3vs"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waic8"]
+atlas = ExtResource("2_oiarw")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ow7jp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e07xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rpeh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pt3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uj4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkxno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63y6b")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_tbmxc")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_slpgp")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_yrn6y")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_6mv7u")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_jp3vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_waic8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd7rk"]
+size = Vector2(12, 9)
+
+[node name="Falling_rock" type="StaticBody2D" groups=["block"]]
+position = Vector2(-8, -8)
+script = ExtResource("2_v45lg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_i6jr2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 16)
+sprite_frames = SubResource("SpriteFrames_ow7jp")
+frame = 2
+frame_progress = 0.999745
+
+[node name="DestructionTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 1)
+shape = SubResource("RectangleShape2D_cd7rk")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="DestructionTimer" to="." method="_on_destruction_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,12 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb003qo87p328"]
+[gd_scene load_steps=10 format=3 uid="uid://cb003qo87p328"]
 
 [ext_resource type="PackedScene" uid="uid://cltpplvspfo8e" path="res://objects/blocks/hittable_block/hittable_block.tscn" id="1_7ynxr"]
 [ext_resource type="Script" path="res://question_block.gd" id="2_okqph"]
+[ext_resource type="PackedScene" uid="uid://ddnptk0lcsf1i" path="res://objects/bonuses/coin/coin.tscn" id="3_4a4yr"]
+[ext_resource type="Texture2D" uid="uid://5byj6ejpcym6" path="res://scenes/tilemap/main.png" id="3_xw22q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lce0l"]
+atlas = ExtResource("3_xw22q")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bggsm"]
+atlas = ExtResource("3_xw22q")
+region = Rect2(704, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0blbw"]
+animations = [{
+"frames": [{
+"duration": 7.0,
+"texture": SubResource("AtlasTexture_lce0l")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_bggsm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5rxq"]
+atlas = ExtResource("3_xw22q")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hd5go"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5rxq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="QuestionBlock" instance=ExtResource("1_7ynxr")]
+position = Vector2(-8, -8)
 script = ExtResource("2_okqph")
-spawner_scene = null
+spawner_scene = ExtResource("3_4a4yr")
 wait_time = 0.2
 
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(8, 8.25)
+
 [node name="ColorRect" parent="." index="1"]
+visible = false
+offset_top = -1.0
+offset_right = 16.0
+offset_bottom = 15.0
 color = Color(1, 0.105882, 1, 1)
+
+[node name="Area2D" parent="." index="2"]
+visible = true
+position = Vector2(8, 8)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -1)
+
+[node name="Timer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
+position = Vector2(8, 7.4)
+scale = Vector2(0.25, 0.2625)
+sprite_frames = SubResource("SpriteFrames_0blbw")
+frame_progress = 0.879811
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="6"]
+visible = false
+position = Vector2(8, 7.5)
+scale = Vector2(0.25, 0.265625)
+sprite_frames = SubResource("SpriteFrames_hd5go")
+frame_progress = 0.85053

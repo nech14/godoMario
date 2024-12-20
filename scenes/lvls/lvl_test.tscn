@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://b8eiktv3vpa6i"]
+[gd_scene load_steps=24 format=3 uid="uid://b8eiktv3vpa6i"]
 
-[ext_resource type="PackedScene" uid="uid://dp8cf0y2par1b" path="res://objects/character/player.tscn" id="1_jw7ey"]
+[ext_resource type="PackedScene" uid="uid://dp8cf0y2par1b" path="res://objects/character/player/player.tscn" id="1_jw7ey"]
 [ext_resource type="PackedScene" uid="uid://cqd8v3ta72hnm" path="res://objects/blocks/turn_block/turn_block.tscn" id="2_kyky4"]
 [ext_resource type="PackedScene" uid="uid://cal7hqsuxreg1" path="res://objects/blocks/base_block.tscn" id="3_cv2dh"]
 [ext_resource type="PackedScene" uid="uid://fpy7u5wrf5l0" path="res://objects/blocks/sriking_block/sriking_block.tscn" id="4_7qa26"]
@@ -11,8 +11,15 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_vpvjf"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="10_2177o"]
 [ext_resource type="PackedScene" uid="uid://c8tluu1g5et8p" path="res://objects/bonuses/elixirOfGigants/elixirOfGigants.tscn" id="11_27ykw"]
-[ext_resource type="PackedScene" uid="uid://dm2aslc332d3t" path="res://objects/enemy/base_enemy/base_enemy.tscn" id="12_sbwbn"]
 [ext_resource type="PackedScene" uid="uid://cu6dvt1e7htqv" path="res://objects/enemy/snake/snake.tscn" id="13_qa7du"]
+[ext_resource type="PackedScene" uid="uid://c7yc5a7cd70bc" path="res://objects/enemy/boulder/boulder.tscn" id="14_4vix0"]
+[ext_resource type="PackedScene" uid="uid://dol1sro348fd" path="res://objects/enemy/bat/bat.tscn" id="15_u47m4"]
+[ext_resource type="PackedScene" uid="uid://cy8gv6uj5komc" path="res://objects/enemy/spikes/spikes.tscn" id="16_ubx00"]
+[ext_resource type="PackedScene" uid="uid://cwtyj0klkwnk3" path="res://objects/bonuses/gun/gun.tscn" id="16_unrg4"]
+[ext_resource type="PackedScene" uid="uid://22cmh8g35xpw" path="res://objects/enemy/retractable_spikes/spikes.tscn" id="17_7bclp"]
+[ext_resource type="PackedScene" uid="uid://d2u2p8qu6pnrx" path="res://objects/blocks/falling_rock/falling_rock.tscn" id="18_if80b"]
+[ext_resource type="PackedScene" uid="uid://cr85wqf5358aj" path="res://objects/blocks/destructible_brick/destructible_brick.tscn" id="19_8vs67"]
+[ext_resource type="PackedScene" uid="uid://dsdosvl82051r" path="res://objects/enemy/troll_king/troll_king.tscn" id="20_llnas"]
 
 [sub_resource type="Resource" id="Resource_io7d0"]
 script = ExtResource("9_vpvjf")
@@ -23,12 +30,12 @@ ease = 2
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gvo8u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81xhw"]
-size = Vector2(2437, 40.5)
+size = Vector2(3375, 40.5)
 
 [node name="MainScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_jw7ey")]
-position = Vector2(1544, 481)
+position = Vector2(819, 427)
 
 [node name="TurnBlock" parent="." instance=ExtResource("2_kyky4")]
 position = Vector2(813, 493)
@@ -52,11 +59,10 @@ position = Vector2(656, 546)
 position = Vector2(526, 460)
 
 [node name="QuestionBlock" parent="." instance=ExtResource("7_jwy13")]
-position = Vector2(990, 523)
-spawner_scene = ExtResource("6_f8va2")
+position = Vector2(988, 532)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-position = Vector2(1544, 481)
+position = Vector2(819, 427)
 script = ExtResource("8_q7cej")
 follow_mode = 5
 follow_target = NodePath("../Player")
@@ -67,7 +73,7 @@ dead_zone_width = 0.047
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(463.2, 144.3)
+position = Vector2(791.7, 412.767)
 zoom = Vector2(1.25, 1.25)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
@@ -78,21 +84,18 @@ script = ExtResource("10_2177o")
 [node name="ElixirOfGigants" parent="." instance=ExtResource("11_27ykw")]
 position = Vector2(1184, 568)
 
-[node name="BaseEnemy" parent="." instance=ExtResource("12_sbwbn")]
-position = Vector2(1322, 593)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(36, 604)
 physics_material_override = SubResource("PhysicsMaterial_gvo8u")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
 offset_left = -50.0
-offset_right = 2388.0
+offset_right = 3323.0
 offset_bottom = 40.0
 color = Color(0.145098, 1, 0.0431373, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1168.5, 20.25)
+position = Vector2(1637.5, 20.25)
 shape = SubResource("RectangleShape2D_81xhw")
 
 [node name="BaseBlock3" parent="." instance=ExtResource("3_cv2dh")]
@@ -102,10 +105,55 @@ position = Vector2(1549, 563)
 position = Vector2(1951, 564)
 
 [node name="BaseMoveEnemy" parent="." instance=ExtResource("13_qa7du")]
-position = Vector2(1893, 516)
+position = Vector2(1887, 569)
 
 [node name="BaseMoveEnemy2" parent="." instance=ExtResource("13_qa7du")]
 position = Vector2(333, 563)
 
 [node name="BaseMoveEnemy3" parent="." instance=ExtResource("13_qa7du")]
 position = Vector2(772, 567)
+
+[node name="Boulder" parent="." instance=ExtResource("14_4vix0")]
+position = Vector2(2480, 18)
+
+[node name="Bat" parent="." instance=ExtResource("15_u47m4")]
+position = Vector2(1950, 521)
+start_point = Vector2(1950, 521)
+end_point = Vector2(1645, 480)
+SPEED = 50.0
+
+[node name="Gun" parent="." instance=ExtResource("16_unrg4")]
+position = Vector2(1498, 578)
+
+[node name="Spikes" parent="." instance=ExtResource("16_ubx00")]
+position = Vector2(1336, 594)
+
+[node name="Spikes2" parent="." instance=ExtResource("17_7bclp")]
+position = Vector2(2151, 590)
+
+[node name="Falling_rock" parent="." instance=ExtResource("18_if80b")]
+position = Vector2(1609, 557)
+
+[node name="Falling_rock2" parent="." instance=ExtResource("18_if80b")]
+position = Vector2(1628, 557)
+
+[node name="destructible_brick" parent="." instance=ExtResource("19_8vs67")]
+position = Vector2(1453, 547)
+
+[node name="destructible_brick2" parent="." instance=ExtResource("19_8vs67")]
+position = Vector2(1469, 547)
+
+[node name="Troll_king" parent="." instance=ExtResource("20_llnas")]
+position = Vector2(2068, 393)
+direction = 1
+SPEED = 100.0
+
+[node name="Gun2" parent="." instance=ExtResource("16_unrg4")]
+position = Vector2(2387, 590)
+
+[node name="QuestionBlock2" parent="." instance=ExtResource("7_jwy13")]
+position = Vector2(1047, 533)
+spawner_scene = ExtResource("11_27ykw")
+
+[node name="QuestionBlock3" parent="." instance=ExtResource("7_jwy13")]
+position = Vector2(922, 533)

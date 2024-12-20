@@ -4,13 +4,17 @@
 [ext_resource type="Script" path="res://objects/blocks/hittable_block/hittable_block.gd" id="2_ewj8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4itqg"]
-size = Vector2(40, 40)
+size = Vector2(16, 16)
 
 [node name="HittableBlock" instance=ExtResource("1_uj2rw")]
 script = ExtResource("2_ewj8q")
 wait_time = 0.1
 
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(20, 20.5)
+
 [node name="Area2D" type="Area2D" parent="." index="2"]
+visible = false
 position = Vector2(20, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]

@@ -26,6 +26,10 @@ func _below(character=null) -> void:
 	pass
 
 
+func _die():
+	queue_free()
+
+
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.name == "hitBox":
 		_below()

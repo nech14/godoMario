@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwtyj0klkwnk3"]
+
+[ext_resource type="PackedScene" uid="uid://biih50hntfarg" path="res://objects/bonuses/item/item.tscn" id="1_c14hy"]
+[ext_resource type="Script" path="res://objects/bonuses/gun/gun.gd" id="2_hrbui"]
+[ext_resource type="Texture2D" uid="uid://cp8r4a8iexygg" path="res://objects/bonuses/gun/guns.png" id="3_v3nca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrqh7"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj18p"]
+atlas = ExtResource("3_v3nca")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itgwh"]
+atlas = ExtResource("3_v3nca")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxwf2"]
+atlas = ExtResource("3_v3nca")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40bwc"]
+atlas = ExtResource("3_v3nca")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k3iq4"]
+animations = [{
+"frames": [{
+"duration": 1.4,
+"texture": SubResource("AtlasTexture_cj18p")
+}, {
+"duration": 1.4,
+"texture": SubResource("AtlasTexture_itgwh")
+}, {
+"duration": 1.4,
+"texture": SubResource("AtlasTexture_gxwf2")
+}, {
+"duration": 1.4,
+"texture": SubResource("AtlasTexture_40bwc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Gun" instance=ExtResource("1_c14hy")]
+script = ExtResource("2_hrbui")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-12, -17)
+shape = SubResource("RectangleShape2D_vrqh7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(8, 3)
+sprite_frames = SubResource("SpriteFrames_k3iq4")
+frame_progress = 0.471585

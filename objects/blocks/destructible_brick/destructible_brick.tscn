@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://cr85wqf5358aj"]
+
+[ext_resource type="Script" path="res://objects/blocks/destructible_brick/destructible_brick.gd" id="1_awg0a"]
+[ext_resource type="Texture2D" uid="uid://d4me4n0dthc8j" path="res://objects/blocks/destructible_brick/Brick.png" id="2_1egrh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etwrq"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o8p5"]
+atlas = ExtResource("2_1egrh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwclq"]
+atlas = ExtResource("2_1egrh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf3ks"]
+atlas = ExtResource("2_1egrh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f88ug"]
+atlas = ExtResource("2_1egrh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyi7u"]
+atlas = ExtResource("2_1egrh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4m1f"]
+atlas = ExtResource("2_1egrh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7chh"]
+atlas = ExtResource("2_1egrh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rur6o"]
+atlas = ExtResource("2_1egrh")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqhii"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_4o8p5")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_vwclq")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_sf3ks")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_f88ug")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_xyi7u")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_b4m1f")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_h7chh")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_rur6o")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4xe7"]
+size = Vector2(16, 16)
+
+[node name="destructible_brick" type="StaticBody2D" groups=["block"]]
+position = Vector2(-8, -8)
+script = ExtResource("1_awg0a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_etwrq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_sqhii")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_i4xe7")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

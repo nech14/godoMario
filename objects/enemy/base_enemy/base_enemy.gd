@@ -1,4 +1,4 @@
-extends Node2D
+extends Base_enemy
 
 var damage = 1
 @export var maxHealth = 1

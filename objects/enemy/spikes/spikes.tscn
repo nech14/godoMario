@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://cy8gv6uj5komc"]
+
+[ext_resource type="PackedScene" uid="uid://dm2aslc332d3t" path="res://objects/enemy/base_enemy/base_enemy.tscn" id="1_p3fsl"]
+[ext_resource type="Texture2D" uid="uid://d2l07ya2cg7r6" path="res://objects/enemy/retractable_spikes/Spike_B.png" id="2_l6nns"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2s45"]
+size = Vector2(28, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddxy1"]
+atlas = ExtResource("2_l6nns")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3u6at"]
+atlas = ExtResource("2_l6nns")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35qum"]
+atlas = ExtResource("2_l6nns")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkxea"]
+atlas = ExtResource("2_l6nns")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roeh4"]
+atlas = ExtResource("2_l6nns")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eoblk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddxy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3u6at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35qum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkxea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roeh4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Spikes" instance=ExtResource("1_p3fsl")]
+
+[node name="ColorRect" parent="." index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="hitBox" index="0"]
+position = Vector2(14, 6.5)
+shape = SubResource("RectangleShape2D_c2s45")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(14, 7)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_eoblk")
+frame_progress = 0.663448

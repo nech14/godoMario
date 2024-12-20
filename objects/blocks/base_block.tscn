@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://cal7hqsuxreg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etwrq"]
-size = Vector2(40, 40)
+size = Vector2(16, 15.5)
 
 [node name="BaseBlock" type="StaticBody2D" groups=["block"]]
 

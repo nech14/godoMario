@@ -1,0 +1,96 @@
+[gd_scene load_steps=15 format=3 uid="uid://c7yc5a7cd70bc"]
+
+[ext_resource type="PackedScene" uid="uid://de4bhygft4esq" path="res://objects/enemy/base_mode_enemy/base_move_enemy.tscn" id="1_kup4s"]
+[ext_resource type="Texture2D" uid="uid://cbsydt8g5nu7a" path="res://objects/enemy/boulder/Boulder.png" id="2_1rqu7"]
+[ext_resource type="Script" path="res://objects/enemy/boulder/boulder.gd" id="2_yjtu3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg4tw"]
+size = Vector2(62, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrb52"]
+size = Vector2(60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ylh4"]
+atlas = ExtResource("2_1rqu7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5hkj"]
+atlas = ExtResource("2_1rqu7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n1yt"]
+atlas = ExtResource("2_1rqu7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgns8"]
+atlas = ExtResource("2_1rqu7")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cioki"]
+atlas = ExtResource("2_1rqu7")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0v7y"]
+atlas = ExtResource("2_1rqu7")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyxc3"]
+atlas = ExtResource("2_1rqu7")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_105k8"]
+atlas = ExtResource("2_1rqu7")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3b3l"]
+animations = [{
+"frames": [{
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_4ylh4")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_r5hkj")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_2n1yt")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_dgns8")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_cioki")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_y0v7y")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_cyxc3")
+}, {
+"duration": 0.4,
+"texture": SubResource("AtlasTexture_105k8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Boulder" instance=ExtResource("1_kup4s")]
+script = ExtResource("2_yjtu3")
+SPEED = 150.0
+
+[node name="ColorRect" parent="." index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(31, 30)
+shape = SubResource("RectangleShape2D_qg4tw")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(30, 30)
+shape = SubResource("RectangleShape2D_mrb52")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(30, 30)
+scale = Vector2(3.75, 3.75)
+sprite_frames = SubResource("SpriteFrames_r3b3l")
+frame_progress = 0.181638
